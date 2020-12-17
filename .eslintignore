@@ -1,0 +1,4 @@
+node_modules
+build
+src/api/graphql/generated
+src/app/graphql/generated

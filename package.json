@@ -1,0 +1,107 @@
+{
+  "name": "razzle-example-typescript",
+  "description": "A Razzle template for producing fairly typesafe SSR apps",
+  "keywords": [
+    "razzle",
+    "typescript",
+    "graphql",
+    "apollo",
+    "prisma",
+    "nexus"
+  ],
+  "author": "Michał Popek <michal@popek.co>",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start:tsc": "tsc -b -w --preserveWatchOutput",
+    "start": "yarn start:tsc & razzle start",
+    "build": "tsc -b && razzle build",
+    "test": "razzle test --env=jsdom",
+    "start:prod": "NODE_ENV=production node build/server.js",
+    "prettier": "prettier --write \"**/*.{ts,tsx,js,json,css,graphql,md}\"",
+    "eslint": "eslint . --fix",
+    "prisma": "dotenv -c -- prisma",
+    "graphql:generate": "yarn run graphql:generate:api && yarn run graphql:generate:app",
+    "graphql:generate:api": "ts-node --transpile-only -P src/api/graphql/nexus.tsconfig.json src/api/graphql/schema.ts",
+    "graphql:generate:app": "graphql-codegen --config codegen.json"
+  },
+  "babelMacros": {
+    "twin": {
+      "preset": "styled-components"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js}": "eslint --cache --fix",
+    "*.{json,css,md,graphql}": "prettier --write"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "@prisma/client": "^2.13.0",
+    "@reach/dialog": "^0.12.1",
+    "@reach/menu-button": "^0.12.1",
+    "@reach/popover": "^0.12.1",
+    "@styled-icons/fa-brands": "^10.22.0",
+    "@styled-icons/heroicons-solid": "^10.19.0",
+    "@types/connect-redis": "^0.0.16",
+    "@types/ioredis": "^4.17.9",
+    "apollo-server-express": "^2.19.0",
+    "connect-redis": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "csurf": "^1.11.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "graphql": "^15.4.0",
+    "graphql-scalars": "^1.6.1",
+    "ioredis": "^4.19.4",
+    "nexus": "^1.0.0",
+    "nexus-plugin-prisma": "^0.27.0",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.1.2",
+    "styled-components": "^5.2.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "1.19.4",
+    "@graphql-codegen/typescript": "1.19.0",
+    "@graphql-codegen/typescript-operations": "1.17.12",
+    "@graphql-codegen/typescript-react-apollo": "2.2.1",
+    "@michalpopek/eslint-config": "^1.0.1-0",
+    "@prisma/cli": "^2.13.0",
+    "@testing-library/jest-dom": "^5.5.0",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.6.0",
+    "@types/cookie-parser": "^1.4.2",
+    "@types/csurf": "^1.11.0",
+    "@types/express": "^4.17.6",
+    "@types/express-session": "^1.17.3",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.14",
+    "@types/passport": "^1.0.4",
+    "@types/passport-github2": "^1.2.4",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.1.4",
+    "@types/styled-components": "^5.1.5",
+    "@types/webpack-env": "^1.16.0",
+    "babel-plugin-macros": "^3.0.0",
+    "babel-plugin-styled-components": "^1.12.0",
+    "dotenv-cli": "^4.0.0",
+    "eslint": "^7.15.0",
+    "graphql-playground-middleware-express": "^1.7.22",
+    "husky": ">=4",
+    "lint-staged": ">=10",
+    "prettier": "^2.2.1",
+    "razzle": "^3.3.8",
+    "ts-node": "^9.1.1",
+    "twin.macro": "^2.0.7",
+    "typescript": "^4.1.3"
+  }
+}

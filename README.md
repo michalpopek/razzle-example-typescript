@@ -37,8 +37,16 @@ Other dev tools:
 
 ## How to use
 
+With npm:
+
 ```bash
-npx create-razzle-app --example https://github.com/michalpopek/razzle-example-typescript my-app
+npx create-razzle-app --example https://github.com/michalpopek/razzle-example-typescript@main my-app
+```
+
+With yarn:
+
+```bash
+yarn create razzle-app --example https://github.com/michalpopek/razzle-example-typescript@main my-app
 ```
 
 ## How to configure

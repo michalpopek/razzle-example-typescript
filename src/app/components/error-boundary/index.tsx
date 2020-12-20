@@ -1,3 +1,4 @@
+import { ExclamationCircle } from "@styled-icons/heroicons-solid";
 import React from "react";
 import tw from "twin.macro";
 
@@ -31,7 +32,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
       } else if (error?.message) {
         return error.message;
       }
-      return "Oops, something went wrong.";
+      return "Sorry, it looks like something went wrong.";
     }
 
     return "";
@@ -40,25 +41,24 @@ export class ErrorBoundary extends React.Component<Props, State> {
   render() {
     if (this.isError) {
       return (
-        <div tw="w-full h-full flex justify-center">
-          <p tw="mt-16 text-red-500 text-center bg-red-100 rounded-md border-solid border-2 border-opacity-25 border-red-700 p-4">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              tw="w-12 h-12 mx-auto mb-4"
-              css={[this.props.isRoot && tw`w-24 h-24`]}
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>{this.errorMessage}</span>
-          </p>
+        <div
+          css={[
+            tw`p-4`,
+            this.props.isRoot ? tw`container mx-auto` : tw`w-full h-full`,
+          ]}
+        >
+          <div
+            css={[
+              tw`flex flex-col space-y-4 items-center bg-red-100 rounded border border-red-200 px-4 py-8 text-red-500 text-center`,
+              this.props.isRoot && tw`max-w-md mt-16 mx-auto`,
+            ]}
+          >
+            <h2 tw="font-serif text-xl px-8 pb-4 border-b border-red-400">
+              Oops...
+            </h2>
+            <ExclamationCircle tw="w-24 h-24" />
+            <p>{this.errorMessage}</p>
+          </div>
         </div>
       );
     }
